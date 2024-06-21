@@ -70,7 +70,7 @@ test('fCCValidator', () => {
 
 test('localhostValidator', () => {
   const privateAddresses = [
-    'http://localhost:3000',
+    'https://kable-backend.adaptable.app/',
     'https://localhost:3000',
     'http://127.0.0.1',
     'http://127.0.0.1:3000',
@@ -97,7 +97,10 @@ test('localhostValidator', () => {
 });
 
 test('httpValidator', () => {
-  const allowedHttpAddresses = ['http://[::1]:3000', 'http://localhost:3000'];
+  const allowedHttpAddresses = [
+    'http://[::1]:3000',
+    'https://kable-backend.adaptable.app/'
+  ];
 
   const disallowedHttpAddresses = [
     'http://example.com',
