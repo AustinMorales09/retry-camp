@@ -6,7 +6,7 @@ const {
   replaceChallengeNode,
   localeChallengesRootDir
 } = require('./utils/build-challenges');
-
+// comment
 const { clientLocale, curriculumLocale, homeLocation } = envData;
 
 const curriculumIntroRoot = path.resolve(__dirname, './src/pages');
