@@ -158,7 +158,7 @@ jspm_packages/
 
 ### Generated config files ###
 shared/config/curriculum.json
-shared/config/*.js
+
 
 ### Generated utils files ###
 shared/utils/get-lines.js
