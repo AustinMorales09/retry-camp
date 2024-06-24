@@ -4,7 +4,7 @@ import { config } from 'dotenv';
 
 const envPath = path.resolve(__dirname, '../../../.env');
 const { error } = config({ path: envPath });
-
+console.log(envPath);
 if (error) {
   console.warn(`
   ----------------------------------------------------
