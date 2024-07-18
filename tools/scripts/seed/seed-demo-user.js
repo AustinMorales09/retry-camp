@@ -30,7 +30,7 @@ args.forEach(arg => {
 });
 
 const log = debug('fcc:tools:seedLocalAuthUser');
-const { MONGOHQ_URL } = process.env;
+const { MONGOHQ_URL } = process.env; //works
 
 function handleError(err, client) {
   if (err) {
@@ -103,9 +103,9 @@ const trophyChallenges = [
 
 const client = new MongoClient(MONGOHQ_URL, { useNewUrlParser: true });
 
-const db = client.db('freecodecamp');
+const db = client.db('test');
 const user = db.collection('user');
-
+console.log(user);
 const dropUserTokens = async function () {
   await db.collection('UserToken').deleteMany({
     userId: {
@@ -123,7 +123,7 @@ const dropUsers = async function () {
 };
 
 const run = async () => {
-  await client.db('admin').command({ ping: 1 });
+  await client.db('admins').command({ ping: 1 });
   log('Connected successfully to mongo');
 
   await dropUserTokens();

@@ -19,7 +19,7 @@ services:
     environment:
       # The api cannot connect to mongodb or mailhog via localhost from inside the
       # container, so we have to override these variables.
-      - MONGOHQ_URL=mongodb://mongo:27017/freecodecamp?directConnection=true
+      - MONGOHQ_URL=mongodb+srv://newUser:test@cluster0.gm6pm.mongodb.net/
       - MAILHOG_HOST=mailhog
     ports:
       # PORT is used by the new api, so we use the less generic API_PORT to

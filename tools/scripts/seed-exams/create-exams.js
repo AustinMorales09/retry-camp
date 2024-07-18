@@ -40,7 +40,7 @@ function handleError(err, client) {
 }
 
 const seed = async () => {
-  await client.db('admin').command({ ping: 1 });
+  await client.db('admins').command({ ping: 1 });
   log('Connected successfully to mongo');
 
   const db = client.db('freecodecamp');

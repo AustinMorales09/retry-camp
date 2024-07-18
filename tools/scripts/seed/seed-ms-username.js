@@ -45,7 +45,7 @@ const certifiedUserAccount = {
 const client = new MongoClient(MONGOHQ_URL, { useNewUrlParser: true });
 
 const run = async () => {
-  await client.db('admin').command({ ping: 1 });
+  await client.db('admins').command({ ping: 1 });
   log('Connected successfully to mongo');
 
   const db = client.db('freecodecamp');

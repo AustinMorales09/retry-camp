@@ -17,7 +17,7 @@ module.exports = {
     DEV_SSR: false
   },
   siteMetadata: {
-    title: 'freeCodeCamp',
+    title: 'Kable Academy',
     siteUrl: homeLocation
   },
   pathPrefix: pathPrefix,

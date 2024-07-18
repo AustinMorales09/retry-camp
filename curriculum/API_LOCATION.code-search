@@ -1,0 +1,245 @@
+# Query: API_LOCATION
+# ContextLines: 1
+
+57 results - 33 files
+
+.env:
+  38  HOME_LOCATION=https://deluxe-hamster-d990cf.netlify.app/
+  39: API_LOCATION=https://kable-backend.adaptable.app/
+  40  FORUM_LOCATION=https://forum.freecodecamp.org
+
+.gitpod.yml:
+  27        export HOME_LOCATION=$(gp url 8000)
+  28:       export API_LOCATION=$(gp url 3000)
+  29        export CYPRESS_BASE_URL=$(gp url 8000)
+  30:       export CHALLENGE_EDITOR_API_LOCATION=$(gp url 3200)
+  31        export CHALLENGE_EDITOR_CLIENT_LOCATION=$(gp url 3300)
+
+  41    - name: server
+  42:     before: export COOKIE_DOMAIN=gitpod.io && export HOME_LOCATION=$(gp url 8000) && export API_LOCATION=$(gp url 3000) && export CYPRESS_BASE_URL=$(gp url 8000)
+  43      # init is not executed for prebuilt workspaces and restarts,
+
+  57    - name: client
+  58:     before: export HOME_LOCATION=$(gp url 8000) && export API_LOCATION=$(gp url 3000) && export CYPRESS_BASE_URL=$(gp url 8000)
+  59      init: >
+
+cypress.config.js:
+  55  
+  56:       config.env.API_LOCATION = 'https://kable-backend.adaptable.app/';
+  57        return config;
+
+sample.env:
+  38  HOME_LOCATION=https://deluxe-hamster-d990cf.netlify.app/
+  39: API_LOCATION=https://kable-backend.adaptable.app/
+  40  FORUM_LOCATION=https://forum.freecodecamp.org
+
+.devcontainer\Dockerfile:
+  30  ENV HOME_LOCATION=https://$CODESPACE_NAME-8000.$GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN
+  31: ENV API_LOCATION=https://$CODESPACE_NAME-3000.$GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN
+  32  ENV CYPRESS_BASE_URL=https://$CODESPACE_NAME-8000.$GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN
+  33: ENV REACT_APP_CHALLENGE_EDITOR_API_LOCATION=https://$CODESPACE_NAME-3200.$GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN
+  34  ENV CHALLENGE_EDITOR_CLIENT_LOCATION=https://$CODESPACE_NAME-3300.$GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN
+
+.github\workflows\temporary-container-checks.yml:
+  34              --build-arg HOME_LOCATION=http://localhost:8000 \
+  35:             --build-arg API_LOCATION=http://localhost:3000 \
+  36              --build-arg FORUM_LOCATION=https://forum.freecodecamp.org \
+
+api\src\app.ts:
+   45  import {
+   46:   API_LOCATION,
+   47    COOKIE_DOMAIN,
+
+  195      });
+  196:     fastify.log.info(`Swagger UI available at ${API_LOCATION}/documentation`);
+  197    }
+
+api\src\routes\settings.test.ts:
+    9  import { createUserInput } from '../utils/create-user';
+   10: import { API_LOCATION } from '../utils/env';
+   11  import { isPictureWithProtocol, getWaitMessage } from './settings';
+
+  346  
+  347:         const expectedLink = `${API_LOCATION}/confirm-email?email=${Buffer.from(unusedEmailOne).toString('base64')}&token=123&emailChange=true`;
+  348          expect(sendEmailSpy).toHaveBeenCalledWith({
+
+api\src\routes\settings.ts:
+   22  import { createAuthToken } from '../utils/tokens';
+   23: import { API_LOCATION } from '../utils/env';
+   24  
+
+  162  
+  163: ${API_LOCATION}/confirm-email?email=${encodedEmail}&token=${id}&emailChange=true
+  164  
+
+api\src\utils\env.ts:
+   49  assert.ok(process.env.AUTH0_AUDIENCE);
+   50: assert.ok(process.env.API_LOCATION);
+   51  assert.ok(process.env.SESSION_SECRET);
+
+  119  export const PORT = process.env.PORT || '3000';
+  120: export const API_LOCATION = process.env.API_LOCATION;
+  121  export const SESSION_SECRET = process.env.SESSION_SECRET;
+
+api-server\src\common\models\user.js:
+  203                throw wrapHandledError(new Error('user already exists'), {
+  204:                 redirectTo: `${process.env.API_LOCATION}/signin`,
+  205                  message: dedent`
+
+  502          const loginEmail = getEncodedEmail(newEmail ? newEmail : null);
+  503:         const host = process.env.API_LOCATION;
+  504          const mailOptions = {
+
+api-server\src\server\passport-providers.js:
+  34      cookieDomain: process.env.COOKIE_DOMAIN || 'localhost',
+  35:     callbackURL: `${process.env.API_LOCATION}/auth/auth0/callback`,
+  36      authPath: '/auth/auth0',
+
+client\tools\read-env.ts:
+  21    HOME_LOCATION: homeLocation,
+  22:   API_LOCATION: apiLocation,
+  23    FORUM_LOCATION: forumLocation,
+
+cypress\plugins\index.js:
+  29  
+  30:   config.env.API_LOCATION = process.env.API_LOCATION;
+  31    return config;
+
+cypress\support\commands.ts:
+   5        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+   6:       cy.visit(`${Cypress.env('API_LOCATION')}/signin`);
+   7        cy.url().should('include', '/learn');
+
+  12          // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+  13:         cy.request(`${Cypress.env('API_LOCATION')}/user/get-session-user`)
+  14            .its('status')
+
+docker\web\Dockerfile:
+  15  ARG HOME_LOCATION
+  16: ARG API_LOCATION
+  17  ARG FORUM_LOCATION
+
+e2e\global-setup.ts:
+   6    setup('can sign in', async ({ request }) => {
+   7:     await request.get(process.env.API_LOCATION + '/signin');
+   8      await request.storageState({
+
+  25    setup('can sign in', async ({ request }) => {
+  26:     await request.get(process.env.API_LOCATION + '/signin');
+  27      await request.storageState({
+
+e2e\header.spec.ts:
+  249  
+  250:     const apiLocation = process.env.API_LOCATION || 'http://localhost:3000';
+  251  
+
+e2e\quincy-email-sign-up.spec.ts:
+  6  
+  7: const apiLocation = process.env.API_LOCATION || 'http://localhost:3000';
+  8  
+
+e2e\utils\request.ts:
+  23    const res = await request[method](
+  24:     process.env.API_LOCATION + ensureLeadingSlash(endpoint),
+  25      {
+
+tools\challenge-editor\client\.env:
+  1: CHALLENGE_EDITOR_API_LOCATION=http://localhost:3200
+
+tools\challenge-editor\client\sample.env:
+  1: CHALLENGE_EDITOR_API_LOCATION=http://localhost:3200
+
+tools\challenge-editor\client\src\components\block\block.tsx:
+   3  import { ChallengeData } from '../../../interfaces/challenge-data';
+   4: import { API_LOCATION } from '../../utils/handle-request';
+   5  import './block.css';
+
+  31      setLoading(true);
+  32:     fetch(`${API_LOCATION}/${params.superblock}/${params.block}`)
+  33        .then(res => res.json() as Promise<ChallengeData[]>)
+
+tools\challenge-editor\client\src\components\buttons\create-empty-steps.tsx:
+   2  import { BlockRequiredProps } from '../../../interfaces/prop-types';
+   3: import { API_LOCATION, handleRequest } from '../../utils/handle-request';
+   4  
+
+   9      fetch(
+  10:       `${API_LOCATION}/${superblock || ''}/${
+  11          block || ''
+
+tools\challenge-editor\client\src\components\buttons\create-next-step.tsx:
+  2  import { BlockRequiredProps } from '../../../interfaces/prop-types';
+  3: import { API_LOCATION, handleRequest } from '../../utils/handle-request';
+  4  
+
+  7      fetch(
+  8:       `${API_LOCATION}/${superblock || ''}/${
+  9          block || ''
+
+tools\challenge-editor\client\src\components\buttons\delete-step.tsx:
+   2  import { BlockRequiredProps } from '../../../interfaces/prop-types';
+   3: import { API_LOCATION, handleRequest } from '../../utils/handle-request';
+   4  
+
+   9      fetch(
+  10:       `${API_LOCATION}/${superblock || ''}/${block || ''}/_tools/delete-step`,
+  11        {
+
+tools\challenge-editor\client\src\components\buttons\insert-step.tsx:
+   2  import { BlockRequiredProps } from '../../../interfaces/prop-types';
+   3: import { API_LOCATION, handleRequest } from '../../utils/handle-request';
+   4  
+
+   9      fetch(
+  10:       `${API_LOCATION}/${superblock || ''}/${block || ''}/_tools/insert-step`,
+  11        {
+
+tools\challenge-editor\client\src\components\buttons\save-challenge.tsx:
+   2  import { ChallengeContentRequiredProps } from '../../../interfaces/prop-types';
+   3: import { API_LOCATION, handleRequest } from '../../utils/handle-request';
+   4  
+
+  12      fetch(
+  13:       `${API_LOCATION}/${superblock || ''}/${block || ''}/${challenge || ''}`,
+  14        {
+
+tools\challenge-editor\client\src\components\buttons\update-step-titles.tsx:
+  2  import { BlockRequiredProps } from '../../../interfaces/prop-types';
+  3: import { API_LOCATION, handleRequest } from '../../utils/handle-request';
+  4  
+
+  7      fetch(
+  8:       `${API_LOCATION}/${superblock || ''}/${
+  9          block || ''
+
+tools\challenge-editor\client\src\components\editor\editor.tsx:
+  14  import './editor.css';
+  15: import { API_LOCATION } from '../../utils/handle-request';
+  16  
+
+  34      fetch(
+  35:       `${API_LOCATION}/${superblock || ''}/${block || ''}/${challenge || ''}`
+  36      )
+
+tools\challenge-editor\client\src\components\landing\landing.tsx:
+   3  import { SuperBlock } from '../../../interfaces/super-block';
+   4: import { API_LOCATION } from '../../utils/handle-request';
+   5  
+
+  16      setLoading(true);
+  17:     fetch(API_LOCATION)
+  18        .then(res => res.json() as Promise<SuperBlock[]>)
+
+tools\challenge-editor\client\src\components\superblock\super-block.tsx:
+   3  import { Block } from '../../../interfaces/block';
+   4: import { API_LOCATION } from '../../utils/handle-request';
+   5  
+
+  18      setLoading(true);
+  19:     fetch(`${API_LOCATION}/${params.superblock}`)
+  20        .then(res => res.json() as Promise<Block[]>)
+
+tools\challenge-editor\client\src\utils\handle-request.ts:
+  20  
+  21: export const API_LOCATION = import.meta.env
+  22:   .CHALLENGE_EDITOR_API_LOCATION as string;
